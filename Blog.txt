@@ -10,3 +10,13 @@ Dependencies :
 -authentification => https://github.com/laravel/breeze
 -Admin UI => https://adminlte.io/
 -backend CRUD => https://github.com/yajra/laravel-datatables
+
+Steps :
+
+1. Create starter project with laravel 
+2. Install Breeze 
+3. migrate db
+4. activate notifications system for laravel: php artisan notifications:table
+5. Design databases : https://laravel.sillo.org/creer-un-blog-les-donnees/ <=> utiliser cascade en cas de suppression d'un utilisateur les articles associés se supprime
+	relation entre categories et posts (many to many) il faut créer une table pivot
+6. for comments add the package nestedset, because we need to manage a hierarchy of comments (example user 1 comments on post then user 2 comments on the comment of user 1...)

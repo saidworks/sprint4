@@ -1,0 +1,12 @@
+Writing tutorial Blog:
+
+
+https://laravel.sillo.org/laravel-8/
+
+Dependencies :
+-comments => https://github.com/lazychaser/laravel-nestedset
+-medias => https://github.com/ctf0/Laravel-Media-Manager
+-avatars => https://github.com/creativeorange/gravatar
+-authentification => https://github.com/laravel/breeze
+-Admin UI => https://adminlte.io/
+-backend CRUD => https://github.com/yajra/laravel-datatables

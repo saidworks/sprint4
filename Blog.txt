@@ -6,6 +6,7 @@ https://laravel.sillo.org/laravel-8/
 Dependencies :
 -comments => https://github.com/lazychaser/laravel-nestedset
 -medias => https://github.com/ctf0/Laravel-Media-Manager
+	https://github.com/UniSharp/laravel-filemanager
 -avatars => https://github.com/creativeorange/gravatar
 -authentification => https://github.com/laravel/breeze
 -Admin UI => https://adminlte.io/
@@ -19,4 +20,13 @@ Steps :
 4. activate notifications system for laravel: php artisan notifications:table
 5. Design databases : https://laravel.sillo.org/creer-un-blog-les-donnees/ <=> utiliser cascade en cas de suppression d'un utilisateur les articles associés se supprime
 	relation entre categories et posts (many to many) il faut créer une table pivot
-6. for comments add the package nestedset, because we need to manage a hierarchy of comments (example user 1 comments on post then user 2 comments on the comment of user 1...)
+	 for comments add the package nestedset, because we need to manage a hierarchy of comments (example user 1 comments on post then user 2 comments on the comment of user 1...)
+6. Front end design:
+	Add medias management package Laravel file manager -> add assets config
+
+
+
+
+Keywords: 
+	-repository
+	-view composer

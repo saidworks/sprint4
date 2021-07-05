@@ -88,5 +88,25 @@ class PostRepository
                             })->paginate($nbrPages);
             }
 
+            // Get posts by tags 
+            public function getActiveOrderByDateForTag($nbrPages, $tag_slug)
+                {
+                    return $this->queryActiveOrderByDate()
+                                ->whereHas('tags', function ($q) use ($tag_slug) {
+                                    $q->where('tags.slug', $tag_slug);
+                                })->paginate($nbrPages);
+                }
+
+            // search 
+            public function search($n, $search)
+                        {
+                            return $this->queryActiveOrderByDate()
+                                        ->where(function ($q) use ($search) {
+                                            $q->where('excerpt', 'like', "%$search%")
+                                            ->orWhere('body', 'like', "%$search%")
+                                            ->orWhere('title', 'like', "%$search%");
+                                        })->paginate($n);
+                        }
+        
 
         }

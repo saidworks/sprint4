@@ -41,11 +41,11 @@
                           {{ formatDate($post->created_at) }}
                       </div>
                       <div class="entry-tags meta-blk">
-                          <span class="tagtext">@lang('Tags')</span>
-                          @foreach($post->tags as $tag)
-                              <a href="#">{{ $tag->tag }}</a>
-                          @endforeach
-                      </div>
+                        <span class="tagtext">@lang('Tags')</span>
+                        @foreach($post->tags as $tag)
+                            <a href="{{ route('tag', $tag->slug) }}">{{ $tag->tag }}</a>
+                        @endforeach
+                    </div>
                   </div>
               </div>
               <div class="s-content__pagenav">

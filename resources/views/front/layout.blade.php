@@ -4,10 +4,12 @@
 
     <!--- basic page needs
     ================================================== -->
-    <meta charset="utf-8">
-    <title>{{ config('app.name') }}</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>{{ isset($post) && $post->seo_title ? $post->seo_title :  config('app.name') }}</title>
+    <meta name="description" content="{{ isset($post) && $post->meta_description ? $post->meta_description : __(config('app.description')) }}">
+    <meta name="author" content="{{ isset($post) ? $post->user->name : __(config('app.author')) }}">
+    @if(isset($post) && $post->meta_keywords)
+        <meta name="keywords" content="{{ $post->meta_keywords }}">
+    @endif
 
     <!-- mobile specific metas
     ================================================== -->
@@ -43,10 +45,10 @@
     </div>
 
 
+
     <!-- header
     ================================================== -->
-    <header class="s-header">
-
+    <header class="s-header @unless(currentRoute('home')) s-header--opaque @endunless">
         <div class="s-header__logo">
             <a class="logo" href="{{ route('home') }}">
                 <img src="{{ asset('images/logo.svg') }}" alt="Homepage">
@@ -65,7 +67,7 @@
                         <a href="#" title="">@lang('Categories')</a>
                         <ul class="sub-menu">
                             @foreach($categories as $category)
-                                <li><a href="#">{{ $category->title }}</a></li>
+                                <li><a href="{{ route('category', $category->slug) }}">{{ $category->title }}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -210,7 +212,7 @@
 
     <!-- content
     ================================================== -->
-    <section class="s-content s-content--no-top-padding">
+    <section class="s-content @if(currentRoute('home')) s-content--no-top-padding @endif">
         @yield('main')
     </section>
 

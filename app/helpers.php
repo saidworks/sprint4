@@ -1,5 +1,5 @@
 <?php
-
+// return the image link 
 if (!function_exists('getImage')) {
     function getImage($post, $thumb = false)
     {   
@@ -8,10 +8,17 @@ if (!function_exists('getImage')) {
         return asset("{$url}/{$post->image}");
     }
 }
-
+// return the current route
 if (!function_exists('currentRoute')) {
     function currentRoute($route)
     {
         return Route::currentRouteNamed($route) ? ' class=current' : '';
     }
 }
+// format the date depending on the location
+if (!function_exists('formatDate')) {
+    function formatDate($date)
+    {
+        return ucfirst(utf8_encode ($date->formatLocalized('%d %B %Y')));
+    }
+  }

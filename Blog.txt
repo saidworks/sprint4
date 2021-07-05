@@ -1,4 +1,4 @@
-Writing tutorial Blog:
+Tutorial Blog:
 
 
 https://laravel.sillo.org/laravel-8/
@@ -22,7 +22,14 @@ Steps :
 	relation entre categories et posts (many to many) il faut créer une table pivot
 	 for comments add the package nestedset, because we need to manage a hierarchy of comments (example user 1 comments on post then user 2 comments on the comment of user 1...)
 6. Front end design:
-	Add medias management package Laravel file manager -> add assets config
+	-Add medias management package Laravel file manager -> add assets config
+	-create anonymous components in a folder called components use x-components name to call them 
+	-use view composer defined helper to add data from db to the view
+	- add nbr of posts per page in config/app.php
+	-use repository to manage the relationships between db and controllers to limit the queries used in the controllers for easy maintenance 
+	-add avatars to users : composer require creativeorange/gravatar ~1.0
+
+	
 
 
 

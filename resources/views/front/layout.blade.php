@@ -69,9 +69,43 @@
                             @foreach($categories as $category)
                                 <li><a href="{{ route('category', $category->slug) }}">{{ $category->title }}</a></li>
                             @endforeach
+                            
                         </ul>
                     </li>
+                        @guest                        
+                            @request('register')
+                            <li class="current">
+                                <a href="{{ request()->url() }}">@lang('Register')</a>
+                            </li>
+                            @endrequest
+                            <li {{ currentRoute('login') }}>
+                                <a href="{{ route('login') }}">@lang('Login')</a>
+                            </li>
+                            @request('forgot-password')
+                            <li class="current">
+                                <a href="{{ request()->url() }}">@lang('Password')</a>
+                            </li>
+                            @endrequest
+                            @request('reset-password/*')
+                                <li class="current">
+                                    <a href="{{ request()->url() }}">@lang('Password')</a>
+                                </li>
+                            @endrequest
+                        @else
+                            <li>                                
+                                <form action="{{ route('logout') }}" method="POST" hidden>
+                                    @csrf                                
+                                </form>
+                                <a 
+                                    href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); this.previousElementSibling.submit();">
+                                    @lang('Logout')
+                                </a>
+                            </li>
+                        @endguest
+                    </ul>
                     <a href="#0" title="@lang('Close Menu')" class="s-header__overlay-close close-mobile-menu">@lang('Close')</a>
+
                 </nav>
             </div>
             <a class="s-header__toggle-menu" href="#0" title="@lang('Menu')"><span>@lang('Menu')</span></a>

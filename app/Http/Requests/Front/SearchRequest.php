@@ -24,7 +24,7 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            //validate entry in search bar
             'search' => 'required|string|max:100'
         ];
     }

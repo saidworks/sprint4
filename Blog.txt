@@ -28,7 +28,8 @@ Steps :
 	- add nbr of posts per page in config/app.php
 	-use repository to manage the relationships between db and controllers to limit the queries used in the controllers for easy maintenance 
 	-add avatars to users : composer require creativeorange/gravatar ~1.0
-
+	- add comments limits in config/app.php
+	- Add comments controller ( need to come back to study ajax problem)
 	
 
 

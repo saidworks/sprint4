@@ -306,5 +306,35 @@
               wrapper('#commentsList', 'click', replyToComment, "e.target.matches('.replycomment')");
           })
       })()
+      // Delete comment
+        const deleteComment = async e => {              
+            e.preventDefault();
+            Swal.fire({
+            title: '@lang('Really delete this comment?')',
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "@lang('Yes')",
+            cancelButtonText: "@lang('No')",
+            preConfirm: () => {
+                return fetch(e.target.getAttribute('href'), { 
+                    method: 'DELETE',
+                    headers: headers
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showComments();
+                    } else {
+                        errorAlert();
+                            }
+                        });
+                    }
+                    });
+                }
+                // Set listeners
+                window.addEventListener('DOMContentLoaded', () => {
+                    ...
+                    wrapper('#commentsList', 'click', deleteComment, "e.target.matches('.deletecomment')");
+                })
     </script> 
 @endsection

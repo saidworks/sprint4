@@ -197,7 +197,10 @@ class DatabaseSeeder extends Seeder
                 ],
             ],
         ]);
-
+        // Contacts
+        Contact::withoutEvents(function () {
+        Contact::factory()->count(5)->create();
+        });
         
     }
 }

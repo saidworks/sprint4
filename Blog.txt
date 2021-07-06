@@ -21,6 +21,9 @@ Steps :
 5. Design databases : https://laravel.sillo.org/creer-un-blog-les-donnees/ <=> utiliser cascade en cas de suppression d'un utilisateur les articles associés se supprime
 	relation entre categories et posts (many to many) il faut créer une table pivot
 	 for comments add the package nestedset, because we need to manage a hierarchy of comments (example user 1 comments on post then user 2 comments on the comment of user 1...)
+	- pour creér le model, controller et factory en meme temps, example Contact: 
+			php artisan make:model Contact -mfc
+
 6. Front end design:
 	-Add medias management package Laravel file manager -> add assets config
 	-create anonymous components in a folder called components use x-components name to call them 
@@ -30,6 +33,9 @@ Steps :
 	-add avatars to users : composer require creativeorange/gravatar ~1.0
 	- add comments limits in config/app.php
 	- Add comments controller ( need to come back to study ajax problem)
+	- Add authentification vues 
+	- Add Contact : php artisan migrate:fresh --seed
+ 
 	
 
 

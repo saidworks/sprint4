@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use UniSharp\LaravelFilemanager\Lfm;
-use App\Http\Controllers\Front\{ PostController as FrontPostController};
+use App\Http\Controllers\Front\{ PostController as FrontPostController,
+                                ContactController as FrontContactController};
 use App\Http\Controllers\Front\CommentController as FrontCommentController;
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,6 @@ Route::name('author')->get('author/{user}', [FrontPostController::class, 'user']
 
 //tags
 Route::name('tag')->get('tag/{tag:slug}', [FrontPostController::class, 'tag']);
+
+//Contact 
+Route::resource('contacts', FrontContactController::class, ['only' => ['create', 'store']]);

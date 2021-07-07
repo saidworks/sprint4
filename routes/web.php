@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use UniSharp\LaravelFilemanager\Lfm;
 use App\Http\Controllers\Front\{ PostController as FrontPostController,
-                                ContactController as FrontContactController};
+                                ContactController as FrontContactController,
+                                PageController as FrontPageController};
 use App\Http\Controllers\Front\CommentController as FrontCommentController;
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,8 @@ Route::name('tag')->get('tag/{tag:slug}', [FrontPostController::class, 'tag']);
 
 //Contact 
 Route::resource('contacts', FrontContactController::class, ['only' => ['create', 'store']]);
+
+
+
+// pages
+Route::name('page')->get('page/{page:slug}', FrontPageController::class);

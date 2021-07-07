@@ -225,13 +225,19 @@
         </div> <!-- end s-hero__slider -->
 
         <div class="s-hero__social hide-on-mobile-small">
-            <p>Follow</p>
+            <p>@lang('Follow')</p>
             <span></span>
             <ul class="s-hero__social-icons">
-                <li><a href="#0"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                <li><a href="#0"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#0"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                <li><a href="#0"><i class="fab fa-dribbble" aria-hidden="true"></i></a></li>
+                @foreach($follows as $follow)
+                    <li>
+                        <a href="{{ $follow->href }}">
+                            <i 
+                                class="fab fa-{{ $follow->title === 'Facebook' ? 'facebook-f' : lcfirst($follow->title) }}" 
+                                aria-hidden="true">
+                            </i>
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </div> <!-- end s-hero__social -->
 
@@ -277,13 +283,12 @@
                     </ul>
                 </div> 
                 <div class="column large-2 medium-3 tab-6 s-footer__social-links">
-                    <h5>Follow Us</h5>
+    
+                    <h5>@lang('Follow Us')</h5>
                     <ul>
-                        <li><a href="#0">Twitter</a></li>
-                        <li><a href="#0">Facebook</a></li>
-                        <li><a href="#0">Dribbble</a></li>
-                        <li><a href="#0">Pinterest</a></li>
-                        <li><a href="#0">Instagram</a></li>
+                        @foreach($follows as $follow)
+                            <li><a href="{{ $follow->href }}">{{ $follow->title }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

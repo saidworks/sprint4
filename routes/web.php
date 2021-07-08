@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Back\AdminController;
 use Illuminate\Support\Facades\Route;
 use UniSharp\LaravelFilemanager\Lfm;
 use App\Http\Controllers\Front\{ PostController as FrontPostController,
@@ -16,6 +17,14 @@ use App\Http\Controllers\Front\CommentController as FrontCommentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Backend -Admin 
+Route::view('admin', 'back.layout');
+Route::prefix('admin')->group(function(){
+    Route::middleware('redac')->group(function(){
+        Route::name('admin')->get('/',[AdminController::class,'index']);
+    });
+});
+
 //home page
 Route::name('home')->get('/',[FrontPostController::class,'index']);
 

@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Category;
+use App\Events\ModelCreated;
 class Post extends Model
 {
+    
+    protected $dispatchesEvents = [
+        'created' => ModelCreated::class,
+    ];
     use HasFactory,Notifiable;
     public function user(){
         return $this->belongsTo(User::class);

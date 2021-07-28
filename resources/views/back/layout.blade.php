@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
   <!-- Theme style -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css" />
+  @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -41,10 +42,43 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        </ul>
-      </nav>
+      <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            @foreach(config('menu') as $name => $elements)
+                @if($elements['role'] === 'redac' || auth()->user()->isAdmin())
+                    @isset($elements['children'])
+                        <li class="nav-item has-treeview {{ menuOpen($elements['children']) }}">
+                            <a href="#" class="nav-link {{ currentChildActive($elements['children']) }}">
+                                <i class="nav-icon fas fa-{{ $elements['icon'] }}"></i>
+                                <p>
+                                    @lang($name)
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @foreach($elements['children'] as $child)
+                                    @if(($child['role'] === 'redac' || auth()->user()->isAdmin()) && $child['name'] !== 'fake')
+                                        <x-back.menu-item 
+                                            :route="$child['route']" 
+                                            :sub=true>
+                                            @lang($child['name'])
+                                        </x-back.menu-item>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </li>
+                    @else
+                        <x-back.menu-item 
+                            :route="$elements['route']" 
+                            :icon="$elements['icon']">
+                            @lang($name)
+                        </x-back.menu-item>
+                    @endisset
+                @endif
+            @endforeach
+          </ul>
+        </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
@@ -57,7 +91,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-            <h1 class="m-0 text-dark">Titre</h1>
+            <h1 class="m-0 text-dark">@lang($title)</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -86,5 +120,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js" ></script>
 <!-- AdminLTE App -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.min.js"></script>
+@yield('js')
 </body>
 </html>

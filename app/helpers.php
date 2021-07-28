@@ -56,3 +56,9 @@ if (!function_exists('formatDate')) {
         return auth()->user()->role === $role;
     }
   }
+  if (!function_exists('formatHour')) {
+    function formatHour($date)
+    {
+        return ucfirst(utf8_encode ($date->formatLocalized('%Hh%M')));
+    }
+    }

@@ -95,6 +95,11 @@
                                 </li>
                             @endrequest
                         @else
+                            @if(auth()->user()->role != 'user')
+                            <li>
+                                <a href="{{ url('admin') }}">@lang('Administration')</a>
+                            </li>
+                            @endif
                             <li>                                
                                 <form action="{{ route('logout') }}" method="POST" hidden>
                                     @csrf                                
